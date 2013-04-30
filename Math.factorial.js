@@ -27,6 +27,6 @@ Math.mFactorial = function(n) {
 	if(this.facts[n]>0) {
 		return this.facts[n];
 	} else {
-		return this.facts[n] = memoizationFactorial(n-1)*n;
+		return this.facts[n] = Math.mFactorial(n-1)*n;
 	}
 };
