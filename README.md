@@ -1,0 +1,4 @@
+Math.factorial
+==============
+
+Math.factorial
