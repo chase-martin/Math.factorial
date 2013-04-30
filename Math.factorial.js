@@ -1,6 +1,6 @@
 // A (very slow) factorial algorithm
 // Uses an Adaptive Order Y Combinator pattern (http://en.wikipedia.org/wiki/Y_combinator)
-// Adapted (just for fun) from Douglas Crockfords "The Little JavaScripter"
+// Adapted in part from a Y Combinator example in Douglas Crockfords "The Little JavaScripter"
 // See FactorialAlgorithmComparisionTests.js in this repo for more efficient algorithms
 // An iterative approach using memoization proved fastest by far in the above tests
 
