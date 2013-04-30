@@ -14,17 +14,17 @@ var factorial = (function callRecursively(factorialFunction) {
 });
 
 // Memoization method (saved results make subsequent calls faster)
-var facts = [];
-function memoizationFactorial(n) {
+var memoizationFactorial = function(n) {
+	this.facts = this.facts || [];
 	if (n==0 || n==1) {
 		return 1;
 	}
-	if(facts[n]>0) {
-		return facts[n];
+	if(this.facts[n]>0) {
+		return this.facts[n];
 	} else {
-		return facts[n] = memoizationFactorial(n-1)*n;
+		return this.facts[n] = memoizationFactorial(n-1)*n;
 	}
-}
+};
 
 // Fast iterative method (no recursion)
 function iterativeFactorial(n){
@@ -49,7 +49,7 @@ var vals = [1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 47900
 // Time each test and log results to the console
 function test(funs, calls) {
 	var results = [];
-	
+
 	function testloop(fn) {
 		for(x in vals) {
 			var num = parseInt(x,10) + 1;
@@ -66,7 +66,7 @@ function test(funs, calls) {
 		}
 		var t2 = Date.now();
 		results.push([(t2 - t1), funs[fn][0] + " : " + (t2 - t1) + "ms"]);
-		
+
 	}
 	results.sort(function(a,b){ return a[0]-b[0]; });
 	console.log("");
@@ -76,13 +76,15 @@ function test(funs, calls) {
 		console.log(results[r][1]);
 	}
 };
+
 // Set up function array for pretty console.logging 
 var farray = [
-	["Math.factorial      ", factorial1],
+	["Math.factorial      ", factorial],
 	["IterativeFactorial  ", iterativeFactorial],
 	["RecursiveFactorial  ", recursiveFactorial],
 	["MemoizationFactorial", memoizationFactorial]	
 ]
+
 // 1 test is not informative enough so lets try 10 calls, and just to see how each scales, we'll also do a 100x test.
 test(farray, 1);
 test(farray, 10);
